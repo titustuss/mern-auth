@@ -1,3 +1,3 @@
 export const user = (req,res) =>{
-res.status(200)
+res.json({message:"api is working"})
 }
