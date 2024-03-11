@@ -4,20 +4,21 @@ import  jwt  from "jsonwebtoken"
 
 export const signup = async (req,res,next)=>{
     try {
-        console.log(req.body)
+        // console.log(req.body)
         const {username,email,password} = req.body
         
         if (!username || !email || !password) {
             return res.status(400).json({ success: false, message: 'Missing required fields' });
         }
         const hashedPassword = bcryptjs.hashSync(password,10);
-        const newUser = new User({username,email,password:hashedPassword})
-        await newUser.save()
+        const newUser = new User({username,email,password:hashedPassword});
+        await newUser.save();
+        console.log("user signed up")
         res.status(201).json({ message: "user created successfully"});
     } catch (error) {
         next(error)
     }
-}
+} 
 
 export const signin = async (req,res,next)=>{
     // console.log(req.body)
